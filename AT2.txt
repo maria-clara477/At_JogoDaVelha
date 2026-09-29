@@ -1,0 +1,149 @@
+package com.mycompany.atividade2;
+
+import java.util.Scanner;
+import java.util.Random;
+
+/**
+ *
+ * @author fef
+ */
+public class Atividade2 {
+
+    public static void main(String[] args) {
+
+        Scanner ler = new Scanner(System.in);
+        Random random = new Random();
+
+        int[][] matriz = new int[3][3];
+
+        int lcomp, ccomp;
+        int l = 0, c = 0;
+        int vitoria = 0, empate = 0;
+
+        do {
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+
+                    if (matriz[i][j] == 1) {
+                        System.out.print("X");
+                    } else if (matriz[i][j] == 2) {
+                        System.out.print("O");
+                    } else {
+                        System.out.print("-");
+                    }
+                }
+
+                System.out.println();
+            }
+
+            do {
+                System.out.println("escolha a linha (0 a 2):");
+                l = ler.nextInt();
+                System.out.println("escolha coluna (0 a 2):");
+                c = ler.nextInt();
+
+                if (matriz[l][c] == 0) {
+                    matriz[l][c] = 1;
+                    break;
+                } else {
+                    System.out.println("esta casa esta ocupada!");
+                }
+
+            } while (true);
+            for (int i = 0; i < 3; i++) {
+                
+                if (matriz[i][0] == 1 &&
+                    matriz[i][1] == 1 &&
+                    matriz[i][2] == 1) {
+                    vitoria = 1;
+                }if (matriz[0][i] == 1 &&
+                    matriz[1][i] == 1 &&
+                    matriz[2][i] == 1) {
+                    vitoria = 1;
+                }
+                 
+                }if (matriz[0][0] == 1 &&
+                    matriz[1][1] == 1 &&
+                    matriz[2][2] == 1) {
+                    vitoria = 1;
+                }if (matriz[0][2] == 1 &&
+                    matriz[1][1] == 1 &&
+                    matriz[2][0] == 1) {
+                    vitoria = 1;
+                }if (vitoria == 1) {
+                    break;
+                }
+
+            do {
+                lcomp = random.nextInt(3);
+                ccomp = random.nextInt(3);
+            } while (matriz[lcomp][ccomp] != 0);
+                    matriz[lcomp][ccomp] = 2;
+
+            for (int i = 0; i < 3; i++) {
+
+                if (matriz[i][0] == 2 &&
+                    matriz[i][1] == 2 &&
+                    matriz[i][2] == 2) {
+
+                    vitoria = 2;
+                }if (matriz[0][i] == 2 &&
+                    matriz[1][i] == 2 &&
+                    matriz[2][i] == 2) {
+                    vitoria = 2;
+                }
+            }
+
+            if (matriz[0][0] == 2 &&
+                matriz[1][1] == 2 &&
+                matriz[2][2] == 2) {
+
+                vitoria = 2;
+            }if (matriz[0][2] == 2 &&
+                matriz[1][1] == 2 &&
+                matriz[2][0] == 2) {
+                vitoria = 2;
+            }if (vitoria == 2) {
+                break;
+            }
+            empate = 1;
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+
+                    if (matriz[i][j] == 0) {
+                        empate = 0;
+                    }
+                }
+            }
+
+        } while (vitoria == 0 && empate == 0);
+
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+
+                if (matriz[i][j] == 1) {
+                    System.out.print("X");
+                } else if (matriz[i][j] == 2) {
+                    System.out.print("O");
+                } else {
+                    System.out.print("-");
+                }
+            }
+
+            System.out.println();
+        }
+
+
+        if (vitoria == 1) {
+            System.out.println("voce venceu!");
+        } else if (vitoria == 2) {
+            System.out.println("voce perdeu");
+        } else if (empate == 1) {
+            System.out.println("empate");
+        }
+
+    }
+}
